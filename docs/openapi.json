@@ -1,0 +1,2481 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "sign-air-discovery",
+    "version": "0.0.1"
+  },
+  "paths": {
+    "/v1/discovery/tsps": {
+      "post": {
+        "tags": [
+          "tsp"
+        ],
+        "summary": "CreateTSP",
+        "description": "Create TSP",
+        "operationId": "CreateTSP",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TSPIn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "TSP was created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TSPOut"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "TSP with this name already exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "TSP Type with this name does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "tsp"
+        ],
+        "summary": "GetTSP",
+        "description": "Get TSP",
+        "operationId": "GetTSP",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "TSP ID"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "TSP Name"
+            }
+          },
+          {
+            "name": "country",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "TSP country"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 2,
+              "description": "Page size",
+              "default": 50,
+              "title": "Size"
+            },
+            "description": "Page size"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TSP was retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TSPOut"
+                  },
+                  "title": "Response Gettsp"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "TSP with this attr does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/tsps/type/{tsp_type}": {
+      "get": {
+        "tags": [
+          "tsp"
+        ],
+        "summary": "GetTSPByType",
+        "description": "Get TSP by Type",
+        "operationId": "GetTSPByType",
+        "parameters": [
+          {
+            "name": "tsp_type",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Tsp Type"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TSP's was retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TSPOut"
+                  },
+                  "title": "Response Gettspbytype"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "TSP Type with this name does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/tsps/{tsp_id}": {
+      "patch": {
+        "tags": [
+          "tsp"
+        ],
+        "summary": "UpdateTSPByID",
+        "description": "Update TSP by ID",
+        "operationId": "UpdateTSPByID",
+        "parameters": [
+          {
+            "name": "tsp_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Tsp Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TSPUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "TSP was updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TSPOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "TSP with this attr does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "tsp"
+        ],
+        "summary": "DeleteTSPByID",
+        "description": "Delete TSP by ID",
+        "operationId": "DeleteTSPByID",
+        "parameters": [
+          {
+            "name": "tsp_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Tsp Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TSP was deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "TSP with this attr does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/tsps/{tsp_id}/data-requirements": {
+      "get": {
+        "tags": [
+          "tsp"
+        ],
+        "summary": "GetShareableDataRequirement",
+        "description": "Get Shareable Data Requirement",
+        "operationId": "GetShareableDataRequirement",
+        "parameters": [
+          {
+            "name": "tsp_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Tsp Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Shareable Data Requirements and Data Groups",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataGroupAndDataRequirementOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "TSP with this attr does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "tsp"
+        ],
+        "summary": "UpdateDataRequirementToTSP",
+        "description": "Update Data Requirement To TSP",
+        "operationId": "UpdateDataRequirementToTSP",
+        "parameters": [
+          {
+            "name": "tsp_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Tsp Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TSPDataRequirementUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Data Requirements were updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "TSP with this attr does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/tsps/{tsp_id}/goals/{goal_id}/missing-info": {
+      "get": {
+        "tags": [
+          "tsp"
+        ],
+        "summary": "GetMissingDataRequirementFromTSP",
+        "description": "Get a list of data requirements that were not provided by the specified TSP",
+        "operationId": "GetMissingDataRequirementFromTSP",
+        "parameters": [
+          {
+            "name": "tsp_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Tsp Id"
+            }
+          },
+          {
+            "name": "goal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Goal Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of Missing Data Requirements ",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "TSP with this attr does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/tsps/{tsp_id}/recommendations": {
+      "get": {
+        "tags": [
+          "tsp"
+        ],
+        "summary": "GetTSPRecommendationsByID",
+        "description": "Get TSP Recommendations by ID",
+        "operationId": "GetTSPRecommendationsByID",
+        "parameters": [
+          {
+            "name": "tsp_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Tsp Id"
+            }
+          },
+          {
+            "name": "countries",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "title": "Countries"
+            }
+          },
+          {
+            "name": "tsp_types",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "title": "Tsp Types"
+            }
+          },
+          {
+            "name": "time_slots",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "title": "Time Slots"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TSPs was retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TSPDB"
+                  },
+                  "title": "Response Gettsprecommendationsbyid"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "TSP with this attr does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/tsps/{tsp_id}/time-slots": {
+      "get": {
+        "tags": [
+          "tsp"
+        ],
+        "summary": "GetTSPTimeSlotsByID",
+        "description": "Get TSP Time Slots by ID",
+        "operationId": "GetTSPTimeSlotsByID",
+        "parameters": [
+          {
+            "name": "tsp_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Tsp Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TSP's Time slots were retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeSlotType"
+                  },
+                  "title": "Response Gettsptimeslotsbyid"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "TSP with this attr does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "tsp"
+        ],
+        "summary": "UpdateTSPTimeSlotsByID",
+        "description": "Update Time Slots of TSP by ID",
+        "operationId": "UpdateTSPTimeSlotsByID",
+        "parameters": [
+          {
+            "name": "tsp_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Tsp Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/TimeSlotType"
+                },
+                "title": "Time Slot List"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "TSP's Time slots were updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimeSlotType"
+                  },
+                  "title": "Response Updatetsptimeslotsbyid"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "TSP with this attr does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/tsps/{tsp_id}/countries": {
+      "get": {
+        "tags": [
+          "tsp"
+        ],
+        "summary": "GetTSPCountriesByID",
+        "description": "Get TSP Countries by ID",
+        "operationId": "GetTSPCountriesByID",
+        "parameters": [
+          {
+            "name": "tsp_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Tsp Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TSP's operating countries were retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Response Gettspcountriesbyid"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "TSP with this attr does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "tsp"
+        ],
+        "summary": "UpdateTSPCountriesByID",
+        "description": "Update Countries of TSP by ID",
+        "operationId": "UpdateTSPCountriesByID",
+        "parameters": [
+          {
+            "name": "tsp_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Tsp Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "title": "Country List"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "TSP's Countries were updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "title": "Response Updatetspcountriesbyid"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "TSP with this attr does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/goals": {
+      "post": {
+        "tags": [
+          "goals"
+        ],
+        "summary": "CreateGoal",
+        "description": "Create Goal",
+        "operationId": "CreateGoal",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GoalIn"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Goal was created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GoalOut"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Goal with this name already exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "'code' does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "goals"
+        ],
+        "summary": "GetGoal",
+        "description": "Get Goal",
+        "operationId": "GetGoal",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Goal ID"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Goal Name"
+            }
+          },
+          {
+            "name": "tsp_provider",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Goal TSP Provider"
+            }
+          },
+          {
+            "name": "tsp_consumer",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Goal TSP Consumer"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "description": "Page size",
+              "default": 50,
+              "title": "Size"
+            },
+            "description": "Page size"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Goal was retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GoalOut"
+                  },
+                  "title": "Response Getgoal"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Goal Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/goals/{goal_id}": {
+      "patch": {
+        "tags": [
+          "goals"
+        ],
+        "summary": "UpdateGoalByID",
+        "description": "Update Goal by ID",
+        "operationId": "UpdateGoalByID",
+        "parameters": [
+          {
+            "name": "goal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Goal Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GoalUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Goal was updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GoalOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Goal Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/goals/{goal_id}/data-requirements": {
+      "post": {
+        "tags": [
+          "goals"
+        ],
+        "summary": "AddDataRequirementToGoal",
+        "description": "Add Data Requirement To Goal",
+        "operationId": "AddDataRequirementToGoal",
+        "parameters": [
+          {
+            "name": "goal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Goal Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "title": "Data Req List"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Data Requirements were added successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "string"
+                  },
+                  "title": "Response Adddatarequirementtogoal"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "'code' does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "goals"
+        ],
+        "summary": "UpdateDataRequirementOfGoal",
+        "description": "Update Data Requirement of TSP",
+        "operationId": "UpdateDataRequirementOfGoal",
+        "parameters": [
+          {
+            "name": "goal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Goal Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GoalDataRequirementUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Data Requirements were updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Goal Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "goals"
+        ],
+        "summary": "GetDataRequirementsForGoal",
+        "description": "Get Data Requirements For Goal",
+        "operationId": "GetDataRequirementsForGoal",
+        "parameters": [
+          {
+            "name": "goal_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Goal Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data Requirements",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/DataRequirementOut"
+                  },
+                  "title": "Response Getdatarequirementsforgoal"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Goal Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/data-requirements": {
+      "post": {
+        "tags": [
+          "data_requirements"
+        ],
+        "summary": "CreateDataRequirement",
+        "description": "Create DataRequirement",
+        "operationId": "CreateDataRequirement",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DataRequirementIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "DataRequirement was created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataRequirementOut"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Data Requirement with this code already exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/data-requirements/{data_req_code}": {
+      "get": {
+        "tags": [
+          "data_requirements"
+        ],
+        "summary": "GetDataRequirementByCode",
+        "description": "Get Data Requirement by Code",
+        "operationId": "GetDataRequirementByCode",
+        "parameters": [
+          {
+            "name": "data_req_code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Data Req Code"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data Requirement was retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataRequirementOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "'code' does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/data-requirements/validate": {
+      "post": {
+        "tags": [
+          "data_requirements"
+        ],
+        "summary": "ValidateDataRequirements",
+        "description": "Validate List of Data Requirements",
+        "operationId": "ValidateDataRequirements",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "title": "Data Req List"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Data Requirements were validated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataRequirementsValidationOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "'code' does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/data-groups": {
+      "post": {
+        "tags": [
+          "data_groups"
+        ],
+        "summary": "CreateDataGroup",
+        "description": "Create Data Group",
+        "operationId": "CreateDataGroup",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DataGroupIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "DataGroup was created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataGroupOut"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Data Group with this code already exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/data-groups/{data_group_code}": {
+      "get": {
+        "tags": [
+          "data_groups"
+        ],
+        "summary": "GetDataGroupByCode",
+        "description": "Get Data Group by Code",
+        "operationId": "GetDataGroupByCode",
+        "parameters": [
+          {
+            "name": "data_group_code",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Data Group Code"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Data Group was retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataGroupOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "'code' does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/data-groups/validate": {
+      "post": {
+        "tags": [
+          "data_groups"
+        ],
+        "summary": "ValidateDataGroups",
+        "description": "Validate List of Data Groups",
+        "operationId": "ValidateDataGroups",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array",
+                "title": "Data Group List"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Data Groups were validated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataGroupValidationOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "'code' does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/time-slots": {
+      "post": {
+        "tags": [
+          "time_slots"
+        ],
+        "summary": "CreateTimeSlot",
+        "description": "Create Time Slot",
+        "operationId": "CreateDataGroup",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimeSlotIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Time Slot was created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimeSlotOut"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Time Slot with this name already exists.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/time-slots/{time_slot_name}": {
+      "get": {
+        "tags": [
+          "time_slots"
+        ],
+        "summary": "GetTimeSlotByName",
+        "description": "Get TimeSlot by Name",
+        "operationId": "GetTimeSlotByName",
+        "parameters": [
+          {
+            "name": "time_slot_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Time Slot Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Time Slot was retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimeSlotOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Time slot not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/tsp-types": {
+      "post": {
+        "tags": [
+          "tsp_types"
+        ],
+        "summary": "CreateTSPType",
+        "description": "Create TSP Type",
+        "operationId": "CreateTSPType",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TSPTypeIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "TSP Type was created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TSPTypeOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "TSP Type with this name already exists..",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/tsp-types/{tsp_type_name}": {
+      "get": {
+        "tags": [
+          "tsp_types"
+        ],
+        "summary": "GetTSPTypeByName",
+        "description": "Get TSP Type by Name",
+        "operationId": "GetTSPTypeByName",
+        "parameters": [
+          {
+            "name": "tsp_type_name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Tsp Type Name"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "TSP Type was retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TSPTypeOut"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "TSP Type with this name does not exist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Message"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/discovery/healthz": {
+      "get": {
+        "tags": [
+          "API Health"
+        ],
+        "summary": "Health Check",
+        "operationId": "health_check_v1_discovery_healthz_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "DataGroupAndDataRequirementOut": {
+        "properties": {
+          "data_attributes": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/DataRequirementAndGroupCodeDB"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "List of Data Requirements"
+          },
+          "data_groups": {
+            "items": {
+              "$ref": "#/components/schemas/DataGroupDB"
+            },
+            "type": "array",
+            "title": "List of Data Groups"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data_attributes",
+          "data_groups"
+        ],
+        "title": "DataGroupAndDataRequirementOut"
+      },
+      "DataGroupDB": {
+        "properties": {
+          "node_id": {
+            "type": "integer",
+            "title": "Data Group Node ID"
+          },
+          "id": {
+            "type": "string",
+            "title": "Data Group ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "Data Group Name"
+          },
+          "code": {
+            "type": "string",
+            "title": "Data Group Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "node_id",
+          "id",
+          "name",
+          "code"
+        ],
+        "title": "DataGroupDB"
+      },
+      "DataGroupIn": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Data Group Name"
+          },
+          "code": {
+            "type": "string",
+            "title": "Data Group Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "code"
+        ],
+        "title": "DataGroupIn"
+      },
+      "DataGroupOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Data Group ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "Data Group Name"
+          },
+          "code": {
+            "type": "string",
+            "title": "Data Group Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "code"
+        ],
+        "title": "DataGroupOut"
+      },
+      "DataGroupValidationOut": {
+        "properties": {
+          "incorrect_codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Incorrect Data Group Codes"
+          },
+          "id_collection": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Fetched Data Group Node IDs"
+          }
+        },
+        "type": "object",
+        "required": [
+          "incorrect_codes",
+          "id_collection"
+        ],
+        "title": "DataGroupValidationOut"
+      },
+      "DataRequirementAndGroupCodeDB": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Data Requirement ID"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Data Requirement Name"
+          },
+          "code": {
+            "type": "string",
+            "title": "Data Requirement Code"
+          },
+          "group_code": {
+            "type": "string",
+            "title": "Data Group Code"
+          },
+          "is_accepted": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Is Accepted"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "detail",
+          "code",
+          "group_code"
+        ],
+        "title": "DataRequirementAndGroupCodeDB"
+      },
+      "DataRequirementIn": {
+        "properties": {
+          "detail": {
+            "type": "string",
+            "title": "Data Requirement Detail"
+          },
+          "code": {
+            "type": "string",
+            "title": "Data Requirement Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "detail",
+          "code"
+        ],
+        "title": "DataRequirementIn"
+      },
+      "DataRequirementOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Data Requirement ID"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Data Requirement Detail"
+          },
+          "code": {
+            "type": "string",
+            "title": "Data Requirement Code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "detail",
+          "code"
+        ],
+        "title": "DataRequirementOut"
+      },
+      "DataRequirementsValidationOut": {
+        "properties": {
+          "incorrect_codes": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Incorrect Data Requirement Codes"
+          },
+          "id_collection": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Fetched Data Requirement Node IDs"
+          }
+        },
+        "type": "object",
+        "required": [
+          "incorrect_codes",
+          "id_collection"
+        ],
+        "title": "DataRequirementsValidationOut"
+      },
+      "GoalDataRequirementUpdate": {
+        "properties": {
+          "data_reqs_node_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "List of Data requirement node ids"
+          }
+        },
+        "type": "object",
+        "title": "GoalDataRequirementUpdate"
+      },
+      "GoalIn": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Goal Name"
+          },
+          "tsp_provider": {
+            "type": "string",
+            "title": "Goal TSP Provider"
+          },
+          "tsp_consumer": {
+            "type": "string",
+            "title": "Goal TSP Consumer"
+          },
+          "data_requirements": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "string"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Codes Data Requirements for Goal"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "tsp_provider",
+          "tsp_consumer"
+        ],
+        "title": "GoalIn"
+      },
+      "GoalOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Goal ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "Goal Name"
+          },
+          "tsp_provider": {
+            "type": "string",
+            "title": "Goal TSP Provider"
+          },
+          "tsp_consumer": {
+            "type": "string",
+            "title": "Goal TSP Consumer"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "tsp_provider",
+          "tsp_consumer"
+        ],
+        "title": "GoalOut"
+      },
+      "GoalUpdate": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Goal Name"
+          },
+          "tsp_provider": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Goal TSP Provider"
+          },
+          "tsp_consumer": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Goal TSP Consumer"
+          }
+        },
+        "type": "object",
+        "title": "GoalUpdate"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Message": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "Message"
+      },
+      "TSPDB": {
+        "properties": {
+          "node_id": {
+            "type": "integer",
+            "title": "TSP Node ID"
+          },
+          "id": {
+            "type": "string",
+            "title": "TSP ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "TSP Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "node_id",
+          "id",
+          "name"
+        ],
+        "title": "TSPDB"
+      },
+      "TSPDataRequirementUpdate": {
+        "properties": {
+          "data_reqs_node_ids": {
+            "anyOf": [
+              {
+                "items": {
+                  "type": "integer"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "List of Data requirement node ids"
+          }
+        },
+        "type": "object",
+        "title": "TSPDataRequirementUpdate"
+      },
+      "TSPIn": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "TSP ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "TSP Name"
+          },
+          "countries": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "List of TSP Countries"
+          },
+          "tsp_type": {
+            "type": "string",
+            "title": "TSP Type"
+          },
+          "time_slots": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/TimeSlotType"
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "TSP Available Slot",
+            "default": [
+              "Mornings",
+              "Afternoons",
+              "Nights"
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "countries",
+          "tsp_type"
+        ],
+        "title": "TSPIn"
+      },
+      "TSPOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "TSP ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "TSP Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "title": "TSPOut"
+      },
+      "TSPTypeIn": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "TSP Type ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "TSP Type Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "title": "TSPTypeIn"
+      },
+      "TSPTypeOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "TSP Type ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "TSP Type Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "title": "TSPTypeOut"
+      },
+      "TSPUpdate": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "TSP Name"
+          }
+        },
+        "type": "object",
+        "title": "TSPUpdate"
+      },
+      "TimeSlotIn": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Time Slot Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "title": "TimeSlotIn"
+      },
+      "TimeSlotOut": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Time Slot ID"
+          },
+          "name": {
+            "type": "string",
+            "title": "Time Slot Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name"
+        ],
+        "title": "TimeSlotOut"
+      },
+      "TimeSlotType": {
+        "type": "string",
+        "enum": [
+          "Mornings",
+          "Afternoons",
+          "Nights"
+        ],
+        "title": "TimeSlotType"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}

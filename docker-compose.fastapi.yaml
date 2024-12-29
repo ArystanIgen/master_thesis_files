@@ -1,0 +1,47 @@
+services:
+  discovery-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./src:/src
+    env_file:
+      - .env
+    networks:
+      - common-net
+      - default
+    ports:
+      - 9000:8001
+
+  sparksee:
+    image: sparksee_grpc_server:latest
+    platform: linux/x86_64
+    ports:
+      - 50051:50051
+    networks:
+      - common-net
+      - default
+    restart: always
+    volumes:
+      - ./sparksee_data:/root/config/
+      - ./sparksee_gdb:/root/gdb/:rw
+    environment:
+      SPARKSEE_USER: admin
+      SPARKSEE_PASSWORD: admin
+      SPARKSEE_ROOT_PASSWORD: admin
+
+  otel-collector:
+    image: otel/opentelemetry-collector:latest
+    container_name: discovery-otel-collector
+    volumes:
+      - ./monitoring/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    command: [ "--config=/etc/otel-collector-config.yaml" ]
+    networks:
+      - common-net
+      - default
+
+networks:
+  default:
+    driver: bridge
+  common-net:
+    external: true

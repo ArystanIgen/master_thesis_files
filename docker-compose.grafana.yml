@@ -1,0 +1,71 @@
+services:
+
+
+  grafana:
+    image: grafana/grafana:10.4.2
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin  # Set admin password
+    depends_on:
+      - tempo
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./configs/grafana/grafana-datasources.yaml:/etc/grafana/provisioning/datasources/datasources.yaml
+    networks:
+      - common-net
+      - default
+
+  loki:
+    image: grafana/loki:3.0.0
+    command: -config.file=/etc/loki/local-config.yaml
+    ports:
+      - "3100:3100"
+    volumes:
+      - loki-data:/loki
+    networks:
+      - common-net
+      - default
+
+  prometheus:
+    image: prom/prometheus:v2.51.2
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./configs/prometheus:/workspace
+    command:
+      - --config.file=/workspace/prometheus-config.yml
+      - --enable-feature=exemplar-storage
+    depends_on:
+      - loki
+    networks:
+      - common-net
+      - default
+
+  tempo:
+    image: grafana/tempo:2.6.1
+    restart: always
+    volumes:
+      - ./configs/tempo/tempo-config.yaml:/etc/tempo/tempo-config.yaml
+      - tempo-data:/tmp/tempo/traces
+    ports:
+      - "55680:55680"  # otlp grpc
+      - "3200:3200"
+    command: [ "--config.file=/etc/tempo/tempo-config.yaml" ]
+    networks:
+      - common-net
+      - default
+
+
+
+networks:
+  default:
+    driver: bridge
+  common-net:
+    external: true
+
+
+volumes:
+  tempo-data:
+  grafana-data:
+  loki-data:

@@ -1,0 +1,37 @@
+receivers:
+  otlp/grpc:
+    protocols:
+      grpc:
+        endpoint: discovery-otel-collector:4317
+  otlp/http:
+    protocols:
+      http:
+        endpoint: discovery-otel-collector:4311
+
+processors:
+  batch:
+    timeout: 5s
+
+exporters:
+  otlp:
+    endpoint: tempo:55680
+    tls:
+      insecure: true
+
+  otlphttp/logs:
+    endpoint: "http://loki:3100/otlp"
+    tls:
+      insecure: true
+
+service:
+  pipelines:
+    traces:
+      receivers: [otlp/grpc]
+      processors: [batch]
+      exporters: [otlp]
+
+    logs:
+      receivers: [otlp/grpc]
+      processors: [batch]
+      exporters: [otlphttp/logs]
+

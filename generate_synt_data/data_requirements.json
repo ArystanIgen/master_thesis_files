@@ -1,0 +1,658 @@
+[
+    {
+        "code": "AL1.1",
+        "detail": "Flight number"
+    },
+    {
+        "code": "AL1.2",
+        "detail": "Airline name"
+    },
+    {
+        "code": "AL1.3",
+        "detail": "Type of flight"
+    },
+    {
+        "code": "AL1.4",
+        "detail": "Flight status"
+    },
+    {
+        "code": "AL2.1",
+        "detail": "Number of checked seasonal ticket holders "
+    },
+    {
+        "code": "AL3.1",
+        "detail": "Surname/Given Names"
+    },
+    {
+        "code": "AL3.2",
+        "detail": "Nationality"
+    },
+    {
+        "code": "AL3.3",
+        "detail": "Date of Birth"
+    },
+    {
+        "code": "AL3.4",
+        "detail": "Gender"
+    },
+    {
+        "code": "AL3.5",
+        "detail": "Official Travel Document Number"
+    },
+    {
+        "code": "AL3.6",
+        "detail": "Issuing State or Organization of the Official Travel Document"
+    },
+    {
+        "code": "AL3.7",
+        "detail": "Travel Document Type"
+    },
+    {
+        "code": "AL3.8",
+        "detail": "Expiration Date of Travel Document"
+    },
+    {
+        "code": "AL4.1",
+        "detail": "Surname/Given Names"
+    },
+    {
+        "code": "AL4.2",
+        "detail": "Flight number"
+    },
+    {
+        "code": "AL4.3",
+        "detail": "Itinerary"
+    },
+    {
+        "code": "AL4.4",
+        "detail": "Ticket number"
+    },
+    {
+        "code": "AL4.5",
+        "detail": "General contact information"
+    },
+    {
+        "code": "AL4.6",
+        "detail": "Form of payment"
+    },
+    {
+        "code": "AL4.7",
+        "detail": "A range of possible additional information/data"
+    },
+    {
+        "code": "AP1.1",
+        "detail": "Check-in desk number"
+    },
+    {
+        "code": "AP1.2",
+        "detail": "Check-in desk opening time"
+    },
+    {
+        "code": "AP1.3",
+        "detail": "Check-in desk closing time"
+    },
+    {
+        "code": "AP1.4",
+        "detail": "Schedule information: time"
+    },
+    {
+        "code": "AP1.5",
+        "detail": "Schedule information: gate"
+    },
+    {
+        "code": "AP1.6",
+        "detail": "The number of baggage and passengers for each flight"
+    },
+    {
+        "code": "AP1.7",
+        "detail": "Baggage reclaim belts data: closing time"
+    },
+    {
+        "code": "AP2.1",
+        "detail": "Surname/Given Names"
+    },
+    {
+        "code": "AP2.2",
+        "detail": "Nationality"
+    },
+    {
+        "code": "AP2.3",
+        "detail": "Date of Birth"
+    },
+    {
+        "code": "AP2.4",
+        "detail": "Gender"
+    },
+    {
+        "code": "AP2.5",
+        "detail": "Official Travel Document Number"
+    },
+    {
+        "code": "AP2.6",
+        "detail": "Issuing State or Organization of the Official Travel Document"
+    },
+    {
+        "code": "AP2.7",
+        "detail": "Travel Document Type"
+    },
+    {
+        "code": "AP2.8",
+        "detail": "Expiration Date of Travel Document"
+    },
+    {
+        "code": "AP2.9",
+        "detail": "Flight number"
+    },
+    {
+        "code": "AP2.10",
+        "detail": "Ticket number"
+    },
+    {
+        "code": "RRW1.1",
+        "detail": "Trains latitude: coordinate as a decimal value"
+    },
+    {
+        "code": "RRW1.2",
+        "detail": "Trains longitude: coordinate as a decimal value"
+    },
+    {
+        "code": "RRW1.3",
+        "detail": "Speed of train"
+    },
+    {
+        "code": "RRW1.4",
+        "detail": "Traction"
+    },
+    {
+        "code": "RRW2.1",
+        "detail": "Number of checked seasonal ticket holders "
+    },
+    {
+        "code": "LDRW1.1",
+        "detail": "Trains latitude: coordinate as a decimal value"
+    },
+    {
+        "code": "LDRW1.2",
+        "detail": "Trains longitude: coordinate as a decimal value"
+    },
+    {
+        "code": "LDRW1.3",
+        "detail": "Speed of train"
+    },
+    {
+        "code": "LDRW1.4",
+        "detail": "Traction"
+    },
+    {
+        "code": "LDRW2.1",
+        "detail": "Surname/Given Names"
+    },
+    {
+        "code": "LDRW2.2",
+        "detail": "Nationality"
+    },
+    {
+        "code": "LDRW2.3",
+        "detail": "Date of Birth"
+    },
+    {
+        "code": "LDRW2.4",
+        "detail": "Gender"
+    },
+    {
+        "code": "LDRW2.5",
+        "detail": "Official Travel Document Number"
+    },
+    {
+        "code": "LDRW2.6",
+        "detail": "Issuing State or Organization of the Official Travel Document"
+    },
+    {
+        "code": "LDRW2.7",
+        "detail": "Travel Document Type"
+    },
+    {
+        "code": "LDRW2.8",
+        "detail": "Expiration Date of Travel Document"
+    },
+    {
+        "code": "LDRW2.9",
+        "detail": "Surname/Given Names"
+    },
+    {
+        "code": "LDRW2.10",
+        "detail": "Train number"
+    },
+    {
+        "code": "LDRW2.11",
+        "detail": "Itinerary"
+    },
+    {
+        "code": "LDRW2.12",
+        "detail": "Ticket number"
+    },
+    {
+        "code": "LDRW2.13",
+        "detail": "General contact information"
+    },
+    {
+        "code": "LDRW2.14",
+        "detail": "Form of payment"
+    },
+    {
+        "code": "LDRW2.15",
+        "detail": "A range of possible additional information/data"
+    },
+    {
+        "code": "LDRW3.1",
+        "detail": "Number of checked seasonal ticket holders "
+    },
+    {
+        "code": "BUS1.1",
+        "detail": "Approximate passenger waiting times "
+    },
+    {
+        "code": "BUS1.2",
+        "detail": "Passenger boarding and alighting counts"
+    },
+    {
+        "code": "BUS1.3",
+        "detail": "Running times"
+    },
+    {
+        "code": "BUS1.4",
+        "detail": "Vehicle loads by route segment (between stops)"
+    },
+    {
+        "code": "BUS1.5",
+        "detail": "Actual departure and arrival times"
+    },
+    {
+        "code": "BUS1.6",
+        "detail": "Vehicle location (real-time) data"
+    },
+    {
+        "code": "BUS1.7",
+        "detail": "Sequence of nodes on a route"
+    },
+    {
+        "code": "BUS2.1",
+        "detail": "Number of checked seasonal ticket holders "
+    },
+    {
+        "code": "DRT1.1",
+        "detail": "customer ID"
+    },
+    {
+        "code": "DRT1.2",
+        "detail": "Departure/arrival time"
+    },
+    {
+        "code": "DRT1.3",
+        "detail": "Number of checked seasonal ticket holders "
+    },
+    {
+        "code": "DRT1.4",
+        "detail": "stop ID for pick-up"
+    },
+    {
+        "code": "DRT1.5",
+        "detail": "stop ID for drop off"
+    },
+    {
+        "code": "DRT2.1",
+        "detail": "Position of vehicle"
+    },
+    {
+        "code": "DRT2.2",
+        "detail": "Actual departure/arrival time of vehicle"
+    },
+    {
+        "code": "DRT2.3",
+        "detail": "Verified pick-up time and date"
+    },
+    {
+        "code": "DRT2.4",
+        "detail": "GPS time for each stop id"
+    },
+    {
+        "code": "DRT3.1",
+        "detail": "Vehicle id"
+    },
+    {
+        "code": "DRT3.2",
+        "detail": "Vehicle type"
+    },
+    {
+        "code": "DRT3.3",
+        "detail": "Vehicle capacity "
+    },
+    {
+        "code": "AL5.1",
+        "detail": "Flight number"
+    },
+    {
+        "code": "AL5.2",
+        "detail": "Departure airport"
+    },
+    {
+        "code": "AL5.3",
+        "detail": "Arrival airport"
+    },
+    {
+        "code": "AL5.4",
+        "detail": "Number of passengers having single tickets airline-long distance rail"
+    },
+    {
+        "code": "AL5.5",
+        "detail": "Number of passengers having single tickets airline-regional rail"
+    },
+    {
+        "code": "AL5.6",
+        "detail": "Number of passengers having single tickets airline-bus"
+    },
+    {
+        "code": "AL5.7",
+        "detail": "Number of passengers having single tickets airline-DRT"
+    },
+    {
+        "code": "AL5.8",
+        "detail": "Estimated arrival time"
+    },
+    {
+        "code": "AL5.9",
+        "detail": "Actual arrival time"
+    },
+    {
+        "code": "AP3.1",
+        "detail": "Fast-track lane"
+    },
+    {
+        "code": "AP3.2",
+        "detail": "Fast-track check-in desk number"
+    },
+    {
+        "code": "AP3.3",
+        "detail": "Additional security lane"
+    },
+    {
+        "code": "RRW2.2",
+        "detail": "Nationality"
+    },
+    {
+        "code": "RRW2.3",
+        "detail": "Date of Birth"
+    },
+    {
+        "code": "RRW2.4",
+        "detail": "Gender"
+    },
+    {
+        "code": "RRW2.5",
+        "detail": "Official Travel Document Number"
+    },
+    {
+        "code": "RRW2.6",
+        "detail": "Issuing State or Organization of the Official Travel Document"
+    },
+    {
+        "code": "RRW2.7",
+        "detail": "Travel Document Type"
+    },
+    {
+        "code": "RRW2.8",
+        "detail": "Expiration Date of Travel Document"
+    },
+    {
+        "code": "RRW2.9",
+        "detail": "Surname/Given Names"
+    },
+    {
+        "code": "RRW2.10",
+        "detail": "Train number"
+    },
+    {
+        "code": "RRW2.11",
+        "detail": "Itinerary"
+    },
+    {
+        "code": "RRW2.12",
+        "detail": "Ticket number"
+    },
+    {
+        "code": "RRW2.13",
+        "detail": "General contact information"
+    },
+    {
+        "code": "RRW2.14",
+        "detail": "Form of payment"
+    },
+    {
+        "code": "RRW2.15",
+        "detail": "A range of possible additional information/data"
+    },
+    {
+        "code": "RRW3.1",
+        "detail": "Number of checked single ticket holders "
+    },
+    {
+        "code": "RRW4.1",
+        "detail": "Number of passengers having single ticket per flight"
+    },
+    {
+        "code": "RRW4.2",
+        "detail": "Single ticket numbers affected by disruption"
+    },
+    {
+        "code": "RRW4.3",
+        "detail": "Actual departure time"
+    },
+    {
+        "code": "RRW4.4",
+        "detail": "Actual arrival time"
+    },
+    {
+        "code": "LDRW4.1",
+        "detail": "Number of passengers having single ticket per flight"
+    },
+    {
+        "code": "LDRW4.2",
+        "detail": "Single ticket numbers affected by disruption"
+    },
+    {
+        "code": "LDRW4.3",
+        "detail": "Actual departure time"
+    },
+    {
+        "code": "LDRW4.4",
+        "detail": "Actual arrival time"
+    },
+    {
+        "code": "BUS3.1",
+        "detail": "Number of passengers having single ticket per flight"
+    },
+    {
+        "code": "BUS3.2",
+        "detail": "Single ticket numbers affected by disruption"
+    },
+    {
+        "code": "BUS3.3",
+        "detail": "Actual departure time"
+    },
+    {
+        "code": "BUS3.4",
+        "detail": "Actual arrival time"
+    },
+    {
+        "code": "DRT4.1",
+        "detail": "Number of passengers having single ticket per flight"
+    },
+    {
+        "code": "DRT4.2",
+        "detail": "Single ticket numbers affected by disruption"
+    },
+    {
+        "code": "DRT4.3",
+        "detail": "Actual departure time"
+    },
+    {
+        "code": "DRT4.4",
+        "detail": "Actual arrival time"
+    },
+    {
+        "code": "AL6.1",
+        "detail": "Flight number"
+    },
+    {
+        "code": "AL6.2",
+        "detail": "Validity period of flight"
+    },
+    {
+        "code": "AL6.3",
+        "detail": "Departure airport"
+    },
+    {
+        "code": "AL6.4",
+        "detail": "Arrival airport"
+    },
+    {
+        "code": "AL6.5",
+        "detail": "Departure time"
+    },
+    {
+        "code": "AL6.6",
+        "detail": "Arrival time"
+    },
+    {
+        "code": "AL6.7",
+        "detail": "Aircraft type"
+    },
+    {
+        "code": "AL6.8",
+        "detail": "Aircraft capacity (number of seats)"
+    },
+    {
+        "code": "AL7.1",
+        "detail": "Terminal number"
+    },
+    {
+        "code": "AL7.2",
+        "detail": "Gate number"
+    },
+    {
+        "code": "AL7.3",
+        "detail": "Maximum connecting time"
+    },
+    {
+        "code": "AL7.4",
+        "detail": "Minimum connecting time"
+    },
+    {
+        "code": "AL9.1",
+        "detail": "Set of short-haul flights"
+    },
+    {
+        "code": "AL9.2",
+        "detail": "Expected number of passengers per short-haul flight per day"
+    },
+    {
+        "code": "AL9.3",
+        "detail": "Total number of passengers per destination per day"
+    },
+    {
+        "code": "AP4.1",
+        "detail": "Flight number"
+    },
+    {
+        "code": "AP4.2",
+        "detail": "Airline name"
+    },
+    {
+        "code": "AP4.3",
+        "detail": "Validity period of flight"
+    },
+    {
+        "code": "AP4.4",
+        "detail": "Departure airport"
+    },
+    {
+        "code": "AP4.5",
+        "detail": "Arrival airport"
+    },
+    {
+        "code": "AP4.6",
+        "detail": "Departure time"
+    },
+    {
+        "code": "AP4.7",
+        "detail": "Arrival time"
+    },
+    {
+        "code": "AP4.8",
+        "detail": "Aircraft type"
+    },
+    {
+        "code": "AP4.9",
+        "detail": "Aircraft capacity (number of seats)"
+    },
+    {
+        "code": "AP5.1",
+        "detail": "Terminal number"
+    },
+    {
+        "code": "AP5.2",
+        "detail": "Gate number"
+    },
+    {
+        "code": "AP5.3",
+        "detail": "Maximum connecting time"
+    },
+    {
+        "code": "AP5.4",
+        "detail": "Minimum connecting time"
+    },
+    {
+        "code": "LDRW5.1",
+        "detail": "Train number"
+    },
+    {
+        "code": "LDRW5.2",
+        "detail": "Validity period of timetable"
+    },
+    {
+        "code": "LDRW5.3",
+        "detail": "Departure station ID"
+    },
+    {
+        "code": "LDRW5.4",
+        "detail": "Arrival station ID"
+    },
+    {
+        "code": "LDRW5.5",
+        "detail": "Departure time"
+    },
+    {
+        "code": "LDRW5.6",
+        "detail": "Arrival time"
+    },
+    {
+        "code": "LDRW5.7",
+        "detail": "Train capacity"
+    },
+    {
+        "code": "LDRW6.1",
+        "detail": "Platform ID"
+    },
+    {
+        "code": "LDRW6.2",
+        "detail": "Track number"
+    },
+    {
+        "code": "LDRW6.3",
+        "detail": "Maximum connecting time"
+    },
+    {
+        "code": "LDRW6.4",
+        "detail": "Minimum connecting time"
+    }
+]
